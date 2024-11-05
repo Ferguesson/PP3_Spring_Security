@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Все люди</title>
+    <style>
+        table {
+            border-spacing: 0 10px;
+            font: bold 100% Georgia, serif;
+            margin: 40px auto;
+            text-shadow: 5px 5px 5px #3F3F7F;
+            background: #B1B9D9;
+            text-align: center;
+            vertical-align: middle;
+            width: 50%;
+            border: 10px solid blue;
+        }
+
+        th, td {
+            border: 1px solid grey;
+            padding: 10px;
+        }
+
+        input, button {
+            color: blueviolet;
+            background: aliceblue;
+            font: bold 100% Georgia, serif;
+            text-shadow: 5px 5px 5px #3F3F7F;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+    <caption>All users</caption>
+    <tr>
+        <th>id</th>
+        <th>User name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Update Users</th>
+        <th>Delete Users</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="user : ${users}">
+        <td th:utext="${user.getId()}"></td>
+        <td th:utext="${user.getUsername()}"></td>
+        <td th:utext="${user.getFirstName()}"></td>
+        <td th:utext="${user.getLastName()}"></td>
+        <td th:utext="${user.getPhoneNumber()}"></td>
+        <td>
+            <form th:method="GET" th:action="@{/admin/edit/{id}(id=${user.getId()})}">
+                <input type="submit" value="Edit"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="POST" th:action="@{/admin/delete/{id}(id=${user.getId()})}">
+                <input type="hidden" name="_method" value="DELETE"/>
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/logout}" th:method="POST">
+    <input type="submit" value="Logout"/>
+</form>
+<br/>
+<hr/>
+<center>
+    <input type="button" value="Зарегистрировать пользователя" onClick='location.href="/admin/new"'>
+</center>
+</body>
+</html>

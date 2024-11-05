@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h1>Регистрация</h1>
+    <p>Пожалуйста, заполните эту форму, чтобы создать учетную запись.</p>
+    <form th:method="POST" th:action="@{/loginning}">
+        Введите имя пользователя: <input type="text" name="username"/>
+        <br/>
+        Введите имя: <input type="text" name="firstName"/>
+        <br/>
+        Введите фамилию: <input type="text" name="lastName"/>
+        <br/>
+        Введите телефон: <input type="text" name="phoneNumber"/>
+        <br/>
+        Введите пароль: <input type="text" name="password"/>
+        <br/>
+        <input type="submit" value="Create!">
+    </form>
+    <form th:action="@{/logout}" th:method="POST">
+        <input type="submit" value="Logout"/>
+    </form></div>
+</body>
+</html>
